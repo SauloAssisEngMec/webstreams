@@ -16,10 +16,20 @@ createServer(async (req, res) => {
     return;
   }
 
-  let items;
-
   Readable.toWeb(createReadStream("./animeflv.csv"))
     .pipeThrough(Transform.toWeb(csvtojson()))
+    .pipeThrough(
+      new TransformStream({
+        transform(chunk, controller) {
+          //console.log("chunk", Buffer.from(chunk).toString());
+          const data = JSON.parse(Buffer.from(chunk));
+          const usefullData = {
+            title: data.title,
+          };
+          controller.enqueue(JSON.stringify(usefullData).concat("\n"));
+        },
+      })
+    )
     .pipeTo(
       new WritableStream({
         write(chunk) {

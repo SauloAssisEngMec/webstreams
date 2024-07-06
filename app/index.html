@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebStream</title>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1,1fr));
+            grid-gap: 20px;
+            align-items: stretch;
+        }
+        .grid>article {
+            border: 1.5px solid rgb(196, 189, 189);
+        }
+
+        .grid .text {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <div class="container">
+        <main id="main" class="grid">
+            <article>
+                <div class="text">
+                    <h2>titulo</h2>
+                    <p>description</p>
+                </div>
+            </article>
+        </main>
+    </div>
+    <script src="./index.js" type="module"></script>
+</body>
+</html>
